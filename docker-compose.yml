@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16.1
+    container_name: dsadw
+    ports:
+      - "${POSTGRES_PORT:-5431}:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-dsadb}
+      POSTGRES_USER: ${POSTGRES_USER:-dsaadmin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dsa1010}
+    volumes:
+      - dw_data:/var/lib/postgresql/data
+      - ./sql:/sql:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-dsaadmin} -d ${POSTGRES_DB:-dsadb}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  dw_data:

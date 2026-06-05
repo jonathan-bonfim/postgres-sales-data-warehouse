@@ -1,0 +1,25 @@
+# Variáveis de ambiente e segredos
+.env
+*.env.local
+
+# Dados, dumps e backups do banco
+pgdata/
+data/
+*.dump
+*.sql.bak
+*.backup
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores / IDEs
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs
+*.log
+logs/
